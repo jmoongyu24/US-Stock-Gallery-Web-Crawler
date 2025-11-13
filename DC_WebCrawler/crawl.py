@@ -18,8 +18,8 @@ chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
 
 driver = webdriver.Chrome(options=chrome_options)
 
-start_date = time.strptime("2025.11.11 00:00:00", "%Y.%m.%d %H:%M:%S")
-end_date = time.strptime("2025.11.11 23:59:59", "%Y.%m.%d %H:%M:%S")
+start_date = time.strptime("2025.11.13 00:00:00", "%Y.%m.%d %H:%M:%S")
+end_date = time.strptime("2025.11.13 00:01:00", "%Y.%m.%d %H:%M:%S")
 
 # 수집한 정보를 저장하는 리스트
 writer_list = [] # 작성자 아이디
@@ -33,7 +33,7 @@ reply_date = [] # 댓글 등록일
 
 BASE = "https://gall.dcinside.com/mgallery/board/lists"
 
-start_page = 200
+start_page = 1
 Flag = True
 
 while Flag:
@@ -42,7 +42,7 @@ while Flag:
 
     try:
         driver.get(BASE_URL)
-        sleep(3)
+        sleep(1)
     except:
         # 예외 발생 시 다시 load
         continue
@@ -151,7 +151,7 @@ while Flag:
                 #게시글 load
                 try:
                     driver.get(content_url)
-                    sleep(3)
+                    sleep(1)
                     contents_soup = BeautifulSoup(driver.page_source,"html.parser")
                     
                     write_div = contents_soup.find('div', {"class": "write_div"})
